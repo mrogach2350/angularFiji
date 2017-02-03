@@ -41,14 +41,13 @@
 
             <div ng-controller="mainController">
 
-                <div class="col-xs-6" ng-repeat="product in products">
-                  <div class="class="col-xs-12"">
-                    <h3>{{product.name}}</h3>
-                    <h3>{{ product.msrpInCents/100 | currency}}</h3>
+                <div ng-repeat="product in products">
+                  <div ng-style="{'background-image':'url({{product.mainImage.ref}})'}" class="col-xs-5 col-md-3 box">
+                    <h3 class="col-xs-6">{{product.name}}</h3>
+                    <h3 class="col-xs-6">{{ product.msrpInCents/100 | currency}}</h3>
+                    <!-- <img src="{{product.mainImage.ref}}" alt=""> -->
                   </div>
-                  <img src="{{product.mainImage.ref}}" alt="">
                 </div>
-
             </div>
 
 		</div>
