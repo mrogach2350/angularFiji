@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp', []);
 
-myApp.controller('mainController', ['$scope', '$http', '$log', function($scope, $http, $log) {
+myApp.controller('mainController', ['$scope', '$http', '$log', '$filter', function($scope, $http, $log, $filter) {
 
   $scope.products;
 
@@ -13,5 +13,4 @@ myApp.controller('mainController', ['$scope', '$http', '$log', function($scope, 
     }, function onError(err){
       $log.error('There was a error and I got back ' + err);
     });
-
 }]);
