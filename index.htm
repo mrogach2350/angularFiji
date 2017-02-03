@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us" ng-app="myApp">
     <head>
-        <title>Learn and Understand AngularJS</title>
+        <title>Fiji Accessories</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta charset="UTF-8">
 
@@ -23,29 +23,18 @@
     </head>
     <body>
 
-        <header>
-			<nav class="navbar navbar-default">
-			<div class="container">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="/">AngularJS</a>
-				</div>
-
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-				</ul>
-			</div>
-			</nav>
-		</header>
-
         <div class="container">
 
             <div ng-controller="mainController">
+              <header>
+                <h1>{{title}}</h1>
+                <h2>{{subTitle}}</h2>
+              </header>
 
                 <div ng-repeat="product in products">
                   <div ng-style="{'background-image':'url({{product.mainImage.ref}})'}" class="col-xs-5 col-md-3 box">
                     <h3 class="col-xs-6">{{product.name}}</h3>
                     <h3 class="col-xs-6">{{ product.msrpInCents/100 | currency}}</h3>
-                    <!-- <img src="{{product.mainImage.ref}}" alt=""> -->
                   </div>
                 </div>
             </div>
