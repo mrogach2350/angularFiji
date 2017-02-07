@@ -4,42 +4,39 @@
         <title>Fiji Accessories</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta charset="UTF-8">
-
         <!-- load bootstrap and fontawesome via CDN -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-        <style>
-            html, body, input, select, textarea
-            {
-                font-size: 1.05em;
-            }
-        </style>
-
         <!-- load angular via CDN -->
         <script src="//code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
         <script src="app.js"></script>
-
         <!-- links css -->
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
+      <div class="container">
+        <div ng-controller="mainController">
 
-        <div class="container">
+          <header>
+            <h1>{{title}}</h1>
+            <h2 class="col-xs-10 col-xs-offset-1">{{subTitle}}</h2>
+          </header>
 
-            <div ng-controller="mainController">
-              <header>
-                <h1>{{title}}</h1>
-                <h2>{{subTitle}}</h2>
-              </header>
-
-                <div ng-repeat="product in products">
-                  <div ng-style="{'background-image':'url({{product.mainImage.ref}})'}" class="col-xs-5 col-md-3 box">
-                    <h3 class="col-xs-6">{{product.name}}</h3>
-                    <h3 class="col-xs-6">{{ product.msrpInCents/100 | currency}}</h3>
+          <main>
+            <div ng-repeat="product in products">
+              <ul>
+                <li class="col-xs-5 col-md-3 box">
+                  <img src="{{product.mainImage.ref}}" alt="">
+                  <div class="textBox">
+                    <h3>{{product.name}}</h3>
+                    <button class="pull-right" type="button" name="button">{{ product.msrpInCents/100 | currency}}</button>
                   </div>
-                </div>
+                </li>
+              </ul>
             </div>
+          </main>
 
-		</div>
+        </div>
+      </div>
 
     </body>
 </html>
