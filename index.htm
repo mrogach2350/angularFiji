@@ -14,31 +14,34 @@
         <!-- links css -->
         <link rel="stylesheet" href="main.css">
     </head>
-    <body>
-      <header ng-controller="mainController">
+    <body ng-controller="mainController">
+      <header>
         <h1>{{title}}</h1>
         <h2>{{subTitle}}</h2>
       </header>
 
-      <div class="container">
-          <main ng-controller="mainController">
+      <aside class="col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 cart">
+        <h2 ng-click="cartShow = !cartShow" ng-init="cartShow = false"> Cart <span class="badge badge-pill badge-default">{{cart.length}}</span></h2>
+        <ul ng-show="cartShow" ng-repeat="item in cart">
+          <li class="col-xs-10 cartItem"><span class="cartItemText">{{item}}  {{}}</span></li>
+        </ul>
+        <h2>Subtotal: {{subTotal/100 | currency}}</h2>
+      </aside>
 
-            <div class=" col-xs-6 col-xs-offset-3 cart">
-              <h2 ng-click="showCart()"> Cart <span class="badge badge-pill badge-default">{{cart.length}}</span> | Subtotal: {{subTotal/100 | currency}}</h2>
-              <ul ng-show="cartShow" ng-repeat="item in cart">
-                <li class="col-xs-7 col-xs-offset-1"><span class="cartItem">{{item}}  {{}}</span></li><button type="button" class="btn btn-danger col-xs-1">X</button>
-              </ul>
-            </div>
-
-              <ul class="col-xs-offset-2 col-xs-10">
+      <div class="container col-xs-9">
+          <main>
+              <ul>
                 <li class="col-xs-5 col-md-3 box" ng-repeat="product in products">
-                  <img src="{{product.mainImage.ref}}" alt="">
+                  <img src="{{product.image}}" alt="">
                   <div class="textBox">
                     <h3 class="capitalize">{{product.name}}</h3>
-                    <button ng-click="addCart()" class="pull-right btn btn-success">{{ product.msrpInCents/100 | currency}} | Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                    <button ng-show="product.inCart" ng-click="addCart()" class="pull-right btn btn-success addToCart">{{ product.cost/100 | currency}} | Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                    <button ng-show="!product.inCart" ng-click="deleteThis()" class="pull-right btn btn-danger addToCart">{{ product.cost/100 | currency}} | Delete from <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                   </div>
                 </li>
               </ul>
+
+
           </main>
       </div>
 
