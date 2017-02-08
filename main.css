@@ -5,6 +5,9 @@ body {
 h1, h2 {
   text-align: center;
 }
+h3 {
+  margin-bottom: 5px;
+}
 header {
   width: 100vw;
   margin: 0;
@@ -15,7 +18,7 @@ header {
   border-bottom-right-radius: 15px;
 }
 img {
-  width: 100%;
+  width: 90%;
   margin-top: 4px;
   border: 1px solid black;
   padding: 1px;
@@ -24,10 +27,10 @@ img {
 ul {
   list-style: none;
 }
-li {
-  height: 35px;
+.btn {
+  margin-top: 5px;
 }
-button {
+.addToCart {
   bottom: 10px;
   position: absolute;
 }
@@ -35,12 +38,14 @@ button {
   display: inline-block;
   border: 5px solid black;
   margin: 5px;
-  height: 350px;
+  height: 40vh;
   background-color: rgba(0, 0, 200, 0.5);
   border-radius: 10px;
 }
 .cartItem {
-  line-height: 100%;
+  vertical-align: bottom;
+  border-bottom: 2px solid black;
+}
+.cartItemText {
   font-size: 1.2em;
-  text-emphasis: bold;
 }
