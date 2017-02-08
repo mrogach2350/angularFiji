@@ -8,15 +8,19 @@ myApp.controller('mainController', ['$scope', '$http', '$log', '$filter', functi
 
     $scope.addCart = function(){
       var prodName = this.product.name;
-      if ($scope.cart.indexOf(prodName) === -1){
-        $scope.cart.push(prodName);
-        $scope.subTotal += this.product.msrpInCents;
-      }
-      $log.info($scope.cart);
+      var prodPrice = this.product.cost;
+      $scope.cart.push(prodName);
+      $scope.subTotal += prodPrice;
+      this.product.inCart = !this.product.inCart;
     };
 
-    $scope.showCart = function(){
-      $scope.cartShow = !$scope.cartShow;
+    $scope.deleteThis = function(){
+      var prodName = this.product.name;
+      var prodPrice = this.product.cost;
+      var idx = $scope.cart.indexOf(prodName);
+      $scope.cart.splice(idx,1);
+      $scope.subTotal -= prodPrice
+      this.product.inCart = !this.product.inCart;
     }
 
     $http({
@@ -25,7 +29,17 @@ myApp.controller('mainController', ['$scope', '$http', '$log', '$filter', functi
     }).then(function onSucess(res){
       $scope.title = res.data.pageTitle;
       $scope.subTitle = res.data.extraInfo;
-      $scope.products = res.data.products;
+      $scope.products = [];
+      for (var i = 0; i < res.data.products.length; i++){
+        var productName = res.data.products[i].name;
+        var productCost = res.data.products[i].msrpInCents;
+        var productImage = res.data.products[i].mainImage.ref;
+
+        $scope.products.push({name : productName,
+                              cost : productCost,
+                              image : productImage,
+                              inCart : true});
+      }
     }, function onError(err){
       $log.error('There was a error and I got back ' + err);
     });
