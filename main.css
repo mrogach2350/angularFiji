@@ -1,5 +1,6 @@
 body {
-  background-color: rgba(0, 0, 255, 0.5);
+  background-image: url('http://i.imgur.com/oiSkhtt.png');
+  background-size: contain;
   color: black;
 }
 h1, h2 {
