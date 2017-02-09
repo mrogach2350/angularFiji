@@ -15,35 +15,45 @@
         <link rel="stylesheet" href="main.css">
     </head>
     <body ng-controller="mainController">
+      <!-- Header and Title info -->
       <header>
         <h1>{{title}}</h1>
         <h2>{{subTitle}}</h2>
       </header>
 
-      <aside class="col-md-3 col-md-offset-0 col-xs-8 col-xs-offset-2 cart">
-        <h2 ng-click="cartShow = !cartShow" ng-init="cartShow = false"> Cart <span class="badge badge-pill badge-default">{{cart.length}}</span></h2>
-        <ul ng-show="cartShow" ng-repeat="item in cart">
-          <li class="col-xs-10 cartItem"><span class="cartItemText">{{item}}  {{}}</span></li>
+      <!-- Cart and Subtotal -->
+      <aside class="container col-sm-10 col-sm-offset-1 col-md-3 col-md-offset-0 cart">
+        <button type="button" class="col-xs-8 col-xs-offset-0 btn btn-primary btn-lg btn-block" ng-click="cartShow = !cartShow" ng-init="cartShow = false" name="button">
+          <i ng-show="cartShow" class="fa fa-angle-double-down" aria-hidden="true"></i>
+          <i ng-show="!cartShow" class="fa fa-angle-double-right" aria-hidden="true"></i>
+           Cart
+           <span class="badge badge-pill badge-default">{{cart.length}}</span>
+        </button>
+        <ul id="cartList" ng-show="cartShow" ng-repeat="item in cart">
+          <li class="col-xs-12 cartItem"><span class="cartItemText">{{item.name}}</span><span class="pull-right">{{item.cost/100 | currency}}</span></li>
         </ul>
-        <h2>Subtotal: {{subTotal/100 | currency}}</h2>
+        <h2 class="pull-right">Subtotal: {{subTotal/100 | currency}}</h2>
       </aside>
 
-      <div class="container col-xs-9">
-          <main>
-              <ul>
-                <li class="col-xs-5 col-md-3 box" ng-repeat="product in products">
-                  <img src="{{product.image}}" alt="">
-                  <div class="textBox">
-                    <h3 class="capitalize">{{product.name}}</h3>
-                    <button ng-show="product.inCart" ng-click="addCart()" class="pull-right btn btn-success addToCart">{{ product.cost/100 | currency}} | Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-                    <button ng-show="!product.inCart" ng-click="deleteThis()" class="pull-right btn btn-danger addToCart">{{ product.cost/100 | currency}} | Delete from <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-              </ul>
+      <!-- Product display -->
+      <main class="container col-xs-12 col-md-9">
+          <ul>
+            <li class="col-xs-4 col-sm-3 box" ng-repeat="product in products">
+              <img src="{{product.image}}" alt="">
+              <div class="textBox">
+                <h3>{{product.name}}</h3>
+                <button ng-show="product.inCart" ng-click="addCart()" class="pull-right btn btn-success addToCart">{{ product.cost/100 | currency}} | Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                <button ng-show="!product.inCart" ng-click="deleteThis()" class="pull-right btn btn-danger addToCart">-{{ product.cost/100 | currency}} | Delete from <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+              </div>
+            </li>
+          </ul>
+      </main>
 
-
-          </main>
-      </div>
-
+      <!-- Tagline -->
+      <footer class="col-xs-12">
+        <i class="fa fa-copyright" aria-hidden="true"></i>2016
+          Developed with <i class="fa fa-heart" aria-hidden="true"></i> by
+        <a href="https://mrogach2350.github.io/">Michael Rogachevsky</a>
+      </footer>
     </body>
 </html>
