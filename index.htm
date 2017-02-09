@@ -42,9 +42,10 @@
               <img src="{{product.image}}" alt="">
               <div class="textBox">
                 <h3>{{product.name}}</h3>
-                <button ng-show="product.inCart" ng-click="addCart()" class="pull-right btn btn-success addToCart">{{ product.cost/100 | currency}} | Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-                <button ng-show="!product.inCart" ng-click="deleteThis()" class="pull-right btn btn-danger addToCart">-{{ product.cost/100 | currency}} | Delete from <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                <hr>
               </div>
+              <button ng-show="product.inCart" ng-click="addCart()" class="pull-right btn btn-success addToCart">{{ product.cost/100 | currency}} | Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+              <button ng-show="!product.inCart" ng-click="deleteThis()" class="pull-right btn btn-danger addToCart">-{{ product.cost/100 | currency}} | Delete from <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
             </li>
           </ul>
       </main>
