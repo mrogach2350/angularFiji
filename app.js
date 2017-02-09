@@ -2,18 +2,22 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('mainController', ['$scope', '$http', '$log', '$filter', function($scope, $http, $log, $filter) {
 
+    // Defines needed vars
     $scope.cart = [];
     $scope.subTotal = 0;
     $scope.cartShow = true;
 
+    // Adds item to cart and changes subTotal
     $scope.addCart = function(){
       var prodName = this.product.name;
       var prodPrice = this.product.cost;
-      $scope.cart.push(prodName);
+      $scope.cart.push({name : prodName, cost : prodPrice});
+      $log.info($scope.cart);
       $scope.subTotal += prodPrice;
       this.product.inCart = !this.product.inCart;
     };
 
+    // Removes items from cart and subtracts from subTotal
     $scope.deleteThis = function(){
       var prodName = this.product.name;
       var prodPrice = this.product.cost;
@@ -23,6 +27,7 @@ myApp.controller('mainController', ['$scope', '$http', '$log', '$filter', functi
       this.product.inCart = !this.product.inCart;
     }
 
+    // http call to retrieve API data
     $http({
       method: 'GET',
       url: 'http://sneakpeeq-sites.s3.amazonaws.com/interviews/ce/feeds/store.js'
